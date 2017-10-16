@@ -23,7 +23,7 @@ $ npm install
 
 Open the package.json file and make sure your dependencies were installed. (body-parser, dotenv, express, node-http-error, pouchdb, ramda)
 
-Next, in the "script" section create a command to start your app on localhost:4000. This will allow you to type `$ npm start` to run your app.   
+Next, in the "script" section, check to see if there is a start command set to run `node app.js`. If this is not in the script section, create a command to start your app on localhost:4000. This will allow you to type `$ npm start` to run your app.   
 
 **Example**
 
@@ -60,7 +60,7 @@ You'll need to create a local **.env** file to store your application's secret. 
 
 ### Load Your Data
 
-Create another command in the script section of your **package.json** file that will run your **load.js** file and load your data into the database. If this is already there please disregard and just run `npm load` in the terminal.
+Again, in the script section of your **package.json** file, check to see if there is a load command set to run **load.js**. If this is not in the script section, create a command to load your data into the database. This will allow you to type `$ npm load` and create documents in your database.
 
 **Example**
 `"load": "node load.js"`
@@ -70,15 +70,15 @@ Create another command in the script section of your **package.json** file that 
 
 ### Starting the API and making your first `GET` call
 
-  Run the following command to start the API on localhost:4000.
+  Run the following command in the terminal to start the API on localhost:4000.
 
   ```
   $ npm start
   ```
 
-  Open your browser and enter localhost:4000/paintings/painting_starry_night
+  Open your browser and enter http://localhost:4000/paintings/painting_starry_night
 
-  This should return a JSON object that looks like this:
+  This will return a JSON object that looks like this if all steps prior were completed:
 
   ```
   {
@@ -108,7 +108,7 @@ http://localhost:4000
 
 ### Scheme
 
-This is a highly regarded API with confidential data on famous paintings and authors, yet we will be doing all communication through HTTP.
+- This is a highly regarded API with confidential data on famous paintings and authors, yet we will be doing all communication through HTTP. :)
 
 ### HTTP Verbs
 
@@ -122,7 +122,7 @@ This is a highly regarded API with confidential data on famous paintings and aut
 
 ### Content Types
 
-All endpoints within the ART API accept and return data formatted as JSON. When providing content in the body of a request the `Content-Type` request header must be `application/json`.
+All endpoints within the Art API accept and return data formatted as JSON. When providing content in the body of a request, the `Content-Type` request header must be `application/json`.
 
 
 ### Response Status Codes
@@ -159,7 +159,7 @@ All endpoints within the ART API accept and return data formatted as JSON. When 
 
 |Status Code|Description|
 |-----------|-----------|
-|400 BAD REQUEST |The request was invalid and the server could not understand. Make sure that you have provided a request body in the proper format. Also check that your resource path is correct for the type of HTTP Request you are making.|
+|400 BAD REQUEST |The request was invalid and the server could not understand your request. Make sure that you have provided a request body in the proper format. Also check that your resource path is correct for the type of HTTP request you are making.|
 
 **Sample**
  - Bad request because this is missing the request body.
@@ -178,7 +178,7 @@ All endpoints within the ART API accept and return data formatted as JSON. When 
 |401 UNAUTHORIZED |The request was not applied because it lacks all the necessary data to perform the http request. Check to make sure all the required fields are provided.|
 
 **Sample**
-- This request is missing the yearCreated.
+- This request is missing the `"yearCreated"`.
 
 ```
 {
@@ -196,8 +196,8 @@ All endpoints within the ART API accept and return data formatted as JSON. When 
 
 **Sample**
 
+*/PUT Request*
 ```
-/PUT Request
 {
     "name": "The Starry Night",
     "movement": "post-impressionism",
@@ -208,17 +208,18 @@ All endpoints within the ART API accept and return data formatted as JSON. When 
         "location": "New York"
     }
 }
-
-
-Return statement
+```
+*Return statement*
+```
 {
   "ok": true,
   "id": "painting_starry_night",
   "rev": "1-c617189487fbe325d01cb7fc74acf45b"
 }
+```
 
-
-Second /PUT Request
+*Second /PUT Request*
+```
 {
     "name": "The Starry Night",
     "movement": "post-impressionism",
@@ -229,9 +230,10 @@ Second /PUT Request
         "location": "New York"
     }
 }
+```
 
-
-409 Response
+*409 Response*
+```
 {
     "name": "HTTPError",
     "statusCode": 409,
@@ -252,7 +254,7 @@ Second /PUT Request
 #### Create a Painting:
 `POST  /paintings`
 
-Creates a painting.
+Creates a painting and stores the information in a database.
 
 **Sample Request**
 
@@ -268,7 +270,7 @@ Creates a painting.
     "movement": "surrealism",
     "artist": "Salvador Dali",
     "yearCreated": 1931,
-    "museum": {name: "Musuem of Modern Art", location: "New York"}
+    "museum": {"name": "Musuem of Modern Art", "location": "New York"}
   }
   ```
 
@@ -304,7 +306,7 @@ Creates a painting.
     "movement": "impressionism",
     "artist": "Pierre-Auguste Renoires",
     "yearCreated": 1876,
-    "museum": {name: "Musée d’Orsay", location: "Paris"}
+    "museum": {"name": "Musée d’Orsay", "location": "Paris"}
   }
   ```
 
@@ -330,7 +332,7 @@ Creates a painting.
     "movement": "impressionism",
     "artist": "Pierre-Auguste Renoires",
     "yearCreated": 1877,
-    "museum": {name: "Musée d’Orsay", location: "Paris"}
+    "museum": {"name": "Musée d’Orsay", "location": "Paris"}
   }
   ```
 
@@ -365,13 +367,12 @@ Creates a painting.
   }
   ```
 
---------------------------------------------------------------------------------
 ### Artists  
 
 #### Create a Artist:
 `POST  /artists`
 
-Creates a painting.
+Creates an artist and stores the information in a database.
 
 **Sample Request**
 

@@ -38,7 +38,7 @@ app.get('/', function(req, res, next) {
 app.post('/paintings', (req, res, next) => {
   if (isEmpty(prop('body', req))) {
     return next(
-      new HTTPError(
+      new nodeHTTPError(
         400,
         'Missing request body.  Content-Type header should be application/json.'
       )
@@ -119,7 +119,7 @@ app.delete('/paintings/:id', (req, res, next) =>
 app.post('/artists', (req, res, next) => {
   if (isEmpty(prop('body', req))) {
     return next(
-      new HTTPError(
+      new nodeHTTPError(
         400,
         'Missing request body.  Content-Type header should be application/json.'
       )
