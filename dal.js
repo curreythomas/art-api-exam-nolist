@@ -1,14 +1,14 @@
+require('dotenv').config()
 const PouchDB = require('pouchdb')
 const db = new PouchDB(process.env.COUCHDB_URL + process.env.COUCHDB_NAME)
-const { toLower } = require('ramda')
+const { remove, replace, prop } = require('ramda')
+const pkGen = require('./lib/pk-builder.js')
 
-const addPainting = paint => {
-  const paintToLower = paint.name.toLower()
-  const spacesToUnderscores = paintToLower.replace(' ', '_')
-  const concatPainting = 'painting-' + spacesToUnderscores
-  paint._id = concatPainting
-  paint.type = 'painting'
-  return db.put(paint)
+const addPainting = painting => {
+  console.log('painting before adding id', painting)
+  painting._id = pkGen('painting', prop('name', painting))
+  console.log('after', painting)
+  return db.put(painting)
 }
 
 const getPainting = id => db.get(id)
