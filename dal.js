@@ -11,32 +11,32 @@ const slugify = require("slugify")
 //  call addDoc to add a doc to the databse                                  //
 //  addDoc returns a promise                                                 //
 ///////////////////////////////////////////////////////////////////////////////
-const addDoc = doc => db.put(doc)
+const putDoc = doc => db.put(doc)
 
 ///////////////////////////////////////////////////////////////////////////////
 //                              ADD Painting                                 //
 // add an _id prop to the incoming doc  ex:  _id = "painting_" + doc.name    //
 // removing preceeding articles 'A' or 'The' from the begining of doc.name   //
 ///////////////////////////////////////////////////////////////////////////////
-const addPainting = doc => {
+const addDoc = doc => {
   doc._id = `${toLower(doc.type)}_${slugify(doc.name.replace(/^a|^the/i, ""), {
     lower: true
   })}`
-  return addDoc(doc)
+  return putDoc(doc)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 //                              GET Painting                                 //
 // Retrieve painting from database using its id as a handle                  //
 ///////////////////////////////////////////////////////////////////////////////
-const getPainting = id => db.get(id)
+const getDoc = id => db.get(id)
 
 ///////////////////////////////////////////////////////////////////////////////
 //  UPDATE a Painting:                                                       //
 // Updates a specific painting as identified by the {id} route parameter.    //
 ///////////////////////////////////////////////////////////////////////////////
 
-const updPainting = doc =>
+const updDoc = doc =>
   db.get(doc._id).then(painting => {
     doc._id = painting._id
     doc._rev = painting._rev
@@ -47,9 +47,9 @@ const updPainting = doc =>
 //  DELETE a Painting:                                                       //
 //  Deletes a specific painting as identified by the {id} route parameter.   //
 ///////////////////////////////////////////////////////////////////////////////
-const delPainting = id => db.get(id).then(painting => db.remove(painting))
+const delDoc = id => db.get(id).then(painting => db.remove(painting))
 
 ///////////////////////////////////////////////////////////////////////////////
 //                             EXPORT FUNCTIONS                              //
 ///////////////////////////////////////////////////////////////////////////////
-module.exports = { addPainting, getPainting, updPainting, delPainting }
+module.exports = { addDoc, getDoc, updDoc, delDoc }

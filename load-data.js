@@ -62,6 +62,66 @@ const paintings = [
     artist: "Pierre-Auguste Renoires",
     yearCreated: 1876,
     museum: { name: "Musée d’Orsay", location: "Paris" }
+  },
+  {
+    _id: "artist_vincent-van-gogh",
+    name: "Vincent van Gogh",
+    type: "artist",
+    dateBorn: "1853-03-30",
+    placeBorn: "Zundert, The Netherlands",
+    dateDied: "1890-07-29",
+    placeDied: "Auvers-sur-Oise, France",
+    movements: "Post-Impressionism, Neo-Impressionism"
+  },
+  {
+    _id: "artist_claude-monet",
+    name: "Claude Monet",
+    type: "artist",
+    dateBorn: "1840-11-14",
+    placeBorn: "Paris, France",
+    dateDied: "1926-12-05",
+    placeDied: "Giverny, France",
+    movements: "Impressionism"
+  },
+  {
+    _id: "artist_leonardo-da-vinci",
+    name: "Leonardo da Vinci",
+    type: "artist",
+    dateBorn: "1452-04-15",
+    placeBorn: "Anchiano, Italy",
+    dateDied: "1519-05-02",
+    placeDied: "Clos Lucé, Amboise, France",
+    movements: "Renaissance"
+  },
+  {
+    _id: "artist_georges-seurat",
+    name: "Georges Seurat",
+    type: "artist",
+    dateBorn: "1859-12-02",
+    placeBorn: "Paris, France",
+    dateDied: "1891-03-29",
+    placeDied: "Paris, France",
+    movements: " Pointillism, Impressionism, Neoclassicism, Divisionism"
+  },
+  {
+    _id: "artist_pablo-picasso",
+    name: "Pablo Picasso",
+    type: "artist",
+    dateBorn: "1881-10-25",
+    placeBorn: "Málaga, Spain",
+    dateDied: "1973-04-08",
+    placeDied: "Mougins, France",
+    movements: " Cubism, Surrealism, Expressionism, Post-Impressionism,"
+  },
+  {
+    _id: "artist_pierre-auguste-renoires",
+    name: "Pierre-Auguste Renoires",
+    type: "artist",
+    dateBorn: "1841-02-25",
+    placeBorn: "Limoges, France",
+    dateDied: "1919-12-03",
+    placeDied: "Cagnes-sur-Mer, France",
+    movements: "Post-Impressionism, Neo-Impressionism"
   }
 ]
 
