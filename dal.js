@@ -32,6 +32,24 @@ const addPainting = doc => {
 const getPainting = id => db.get(id)
 
 ///////////////////////////////////////////////////////////////////////////////
+//  UPDATE a Painting:                                                       //
+// Updates a specific painting as identified by the {id} route parameter.    //
+///////////////////////////////////////////////////////////////////////////////
+
+const updPainting = doc =>
+  db.get(doc._id).then(painting => {
+    doc._id = painting._id
+    doc._rev = painting._rev
+    return db.put(doc)
+  })
+
+///////////////////////////////////////////////////////////////////////////////
+//  DELETE a Painting:                                                       //
+//  Deletes a specific painting as identified by the {id} route parameter.   //
+///////////////////////////////////////////////////////////////////////////////
+const delPainting = id => db.get(id).then(painting => db.remove(painting))
+
+///////////////////////////////////////////////////////////////////////////////
 //                             EXPORT FUNCTIONS                              //
 ///////////////////////////////////////////////////////////////////////////////
-module.exports = { addPainting, getPainting }
+module.exports = { addPainting, getPainting, updPainting, delPainting }
